@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>TODO: playlist name</title>
+</head>
+
+<body>
+    <h1>Lofi</h1>
+
+    <ul>
+        <li>
+            <input type="checkbox" name="song1" id="song1">
+            <label for="song1">Song 1</label>
+            <button onclick="removeSong('song1')">Remove</button>
+        </li>
+
+        <li>
+            <input type="checkbox" name="song2" id="song2">
+            <label for="song2">Song 2</label>
+            <button onclick="removeSong('song2')">Remove</button>
+        </li>
+    </ul>
+
+    <p>add functionaly to check of songs to bulk remove them: </p>
+    <form>
+        <label for="select-all">Select All:</label>
+        <input type="checkbox" id="select-all" name="select-all">
+        <button type="submit">Remove Selected</button>
+    </form>
+
+</body>
+</html>
