@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Page navigation
+    path('test/', views.test, name='test'),
     path('base/', views.base, name='base'),
     path('home/', views.home, name='home'),
     path('artists/', views.artists, name='artists'),
