@@ -84,4 +84,7 @@ def register(request):
 
     return render(request, 'registration/register.html', {'form': form})
 
-
+def remove(request, playlist_id):
+    obj = Playlist.objects.get(p_pid = playlist_id)
+    obj.delete()
+    return redirect("/home")

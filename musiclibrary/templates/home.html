@@ -7,7 +7,9 @@
 
 {% for playlist in playlists %}
 <p><a href="playlist.html">{{ playlist.p_name }}</a></p>
-<button onclick="">Remove</button>
+<form action="{% url 'remove' playlist.p_pid %}">
+    <button type="submit" onclick="">Remove</button>
+</form>
 {% endfor %}
 
 
