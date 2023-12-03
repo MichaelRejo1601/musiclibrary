@@ -86,3 +86,13 @@ def remove(request, playlist_id):
 def playlist(request, playlist_id):
     playlist = get_object_or_404(Playlist, p_pid=playlist_id)
     return render(request, 'playlist.html', {'playlist': playlist})
+
+def search_songs(request):
+    if 'search' in request.GET:
+        search_query = request.GET['search']
+        # Use contains so as long as search contains some correct letters we are good
+        songs = Song.objects.filter(s_name__icontains=search_query)
+    else:
+        songs = []
+
+    return render(request, 'playlist.html', {'songs': songs})

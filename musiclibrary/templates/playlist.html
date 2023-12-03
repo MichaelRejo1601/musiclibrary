@@ -3,7 +3,29 @@
 
 {% block content %}
 
-<p>playlists here</p>
+<div class="grid-container">
+  <div>
+    playlist songs here
+  </div>
 
+  <div>
+    <form method="GET" action="{% url 'search_songs' %}">
+      <label for="search">Find an Song:</label>
+      <input type="text" id="search" name="search" placeholder="Enter song name">
+      <button type="submit">Search</button>
+    </form>
+
+    {% if songs %}
+      <ul>
+        {% for song in songs %}
+          <li>{{ song.s_name }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+        <p>No songs found. Please try searching again</p>
+    {% endif %}
+  </div>
+  
+</div>
 
 {% endblock %}

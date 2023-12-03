@@ -42,4 +42,5 @@ urlpatterns = [
 
     # See playlist
     path('playlist/<int:playlist_id>/', views.playlist, name='playlist'),
+    path('search_songs/', views.search_songs, name='search_songs'),
 ]
