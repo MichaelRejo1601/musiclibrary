@@ -3,8 +3,6 @@
 
 {% block content %}
 
-<h1>Search Artists</h1>
-
 <form method="GET" action="{% url 'search_artists' %}">
     <label for="search">Find an Artist:</label>
     <input type="text" id="search" name="search" placeholder="Enter artist name">
@@ -12,7 +10,6 @@
 </form>
 
 {% if artists %}
-    <h2>Search Results:</h2>
     <ul>
         {% for artist in artists %}
         <a href="{% url 'artist_albums' artist.a_aid %}">{{ artist.a_name }}</a>
