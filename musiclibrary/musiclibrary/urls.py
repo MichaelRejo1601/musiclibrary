@@ -19,5 +19,10 @@ from libapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('test/', views.test, name='test'),
+
+    # Page navigation
+    path('base/', views.base, name='base'),
+    path('home/', views.home, name='home'),
+    path('artists/', views.artists, name='artists'),
+    path('albums/', views.albums, name='albums'),
 ]
