@@ -26,16 +26,15 @@ urlpatterns = [
     path('test/', views.test, name='test'),
     path('base/', views.base, name='base'),
     path('home/', views.home, name='home'),
-    path('artists/', views.artists, name='artists'),
-    path('albums/', views.albums, name='albums'),
-
-    # Search artists
     path('search_artists/', views.search_artists, name='search_artists'),
+    path('search_albums/', views.search_albums, name='search_albums'),
+   
+    # Search artists
     path('artist_albums/<int:artist_id>/', views.artist_albums, name='artist_albums'),
 
     # Search albums
-    path('search_albums/', views.search_albums, name='search_albums'),
     path('album_songs/<int:album_id>/', views.album_songs, name='album_songs'),
+
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', views.register, name='register'),
