@@ -22,11 +22,11 @@
 
   <h1>Song List</h1>
 
-  <ul>
+  <div>
       {% for song in songs %}
-          <li>{{ song.s_name }} - {{ song.s_alid.al_aid.a_name }}</li>
+          <div>{{ song.s_name }} - {{ song.s_alid.al_aid.a_name }}</div>
       {% endfor %}
-  </ul>
+  </div>
 
 </body>
 </html>
