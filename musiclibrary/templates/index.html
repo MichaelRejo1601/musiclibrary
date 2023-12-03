@@ -21,5 +21,14 @@
   <p> ADD Playlist stuff here as this is the home page </p>
 
   <p>Explore your music collection with ease. Search for specific songs, browse playlists, and discover new music.</p>
+
+  <h1>Song List</h1>
+
+  <div>
+      {% for song in songs %}
+          <div>{{ song.s_name }} - {{ song.s_alid.al_aid.a_name }}</div>
+      {% endfor %}
+  </div>
+
 </body>
 </html>

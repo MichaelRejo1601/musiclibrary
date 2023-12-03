@@ -1,18 +1,18 @@
 from django.contrib import admin
-from . import models
+from libapp.models import *
 
 # Register your models here.
 
-admin.site.register(models.Album)
-admin.site.register(models.Artist)
-admin.site.register(models.AuthGroup)
-admin.site.register(models.AuthGroupPermissions)
-admin.site.register(models.AuthPermission)
-admin.site.register(models.AuthUser)
-admin.site.register(models.AuthUserGroups)
-admin.site.register(models.AuthUserUserPermissions)
-admin.site.register(models.Csv)
-admin.site.register(models.Playlist)
-admin.site.register(models.Playsong)
-admin.site.register(models.Song)
-admin.site.register(models.Users)
+admin.site.register(Album)
+admin.site.register(Artist)
+admin.site.register(AuthGroup)
+admin.site.register(AuthGroupPermissions)
+admin.site.register(AuthPermission)
+admin.site.register(AuthUser)
+admin.site.register(AuthUserGroups)
+admin.site.register(AuthUserUserPermissions)
+admin.site.register(Csv)
+admin.site.register(Playlist)
+admin.site.register(Playsong)
+admin.site.register(Song)
+admin.site.register(Users)
