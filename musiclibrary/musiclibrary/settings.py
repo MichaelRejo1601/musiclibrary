@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'musiclibrary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'musiclibrary',
-        'USER': 'matthewluo',
-        'PASSWORD': '',
+        'NAME': 'music',
+        'USER': 'postgres',
+        'PASSWORD': 'a',
         'HOST': 'localhost',  # Set to the address where your PostgreSQL server is running
-        'PORT': '8888',      # Set to the port number where your PostgreSQL server is listening
+        'PORT': '5432',      # Set to the port number where your PostgreSQL server is listening
     }
 }
 
@@ -132,3 +132,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/base'
+LOGOUT_REDIRECT_URL = '/login'
+APPEND_SLASH = True

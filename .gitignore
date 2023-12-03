@@ -5,3 +5,5 @@ __pycache__/
 node_modules/
 *.sqlite3
 *.pyc
+musiclibrary/musiclibrary/__pycache__/settings.cpython-36.pyc
+musiclibrary/musiclibrary/__pycache__/urls.cpython-36.pyc

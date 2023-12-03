@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <!-- Add your CSS styles or link to external stylesheets here -->
+</head>
+<body>
+
+<div>
+    <h2>User Registration</h2>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <button type="submit">Register</button>
+    </form>
+    <br>
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+
+</body>
+</html>

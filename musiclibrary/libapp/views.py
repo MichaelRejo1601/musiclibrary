@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from .forms import *
+
 from .models import *
 
 # Create your views here.
@@ -16,6 +21,7 @@ def artists(request):
 def albums(request):
     return render(request, 'albums.html', {})
 
+@login_required
 def test(request):
     songs = Song.objects.select_related('s_alid__al_aid').all()
     
@@ -51,3 +57,14 @@ def album_songs(request, album_id):
     songs = Song.objects.filter(s_alid=album)
     return render(request, 'album_songs.html', {'album': album, 'songs': songs})
     
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log the user in after registration
+            return redirect('/login')  # Replace 'home' with your desired redirect path
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/register.html', {'form': form})
