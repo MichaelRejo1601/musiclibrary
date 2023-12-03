@@ -61,6 +61,12 @@ def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            
+            new_user = Users(u_username=username, u_password=password)
+            new_user.save()
+            
             user = form.save()
             login(request, user)  # Log the user in after registration
             return redirect('/login')  # Replace 'home' with your desired redirect path
