@@ -5,15 +5,16 @@
 
 <p>Explore your music collection with ease. Search for specific songs, browse playlists, and discover new music.</p>
 
-<p><a href="playlist.html">Playlist 1</a></p>
-<button onclick="removePlaylist('Playlist 1')">Remove</button>
+{% for playlist in playlists %}
+<p><a href="playlist.html">{{ playlist.p_name }}</a></p>
+<button onclick="">Remove</button>
+{% endfor %}
 
-<p><a href="playlist.html">Playlist 2</a></p>
-<button onclick="removePlaylist('Playlist 2')">Remove</button>
 
-<div class="playlist">
-    <button onclick="addPlaylist()">Add Playlist</button>
-</div>
-    
+<form action="{% url 'home' %}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <input type="submit" value="Add Playlist">
+</form>
 
 {% endblock %}

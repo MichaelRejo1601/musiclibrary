@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.views.decorators.csrf import csrf_exempt
 from .forms import *
 
 from .models import *
@@ -12,8 +13,16 @@ from .models import *
 def base(request):
     return render(request, 'base.html', {})
 
+@login_required
+@csrf_exempt
 def home(request):
-    return render(request, 'home.html', {})
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        if name is not None:
+            newobj = Playlist(p_name=name, p_uid = Users.objects.get(u_username=request.user.username))
+            newobj.save()
+    playlists = Playlist.objects.all()
+    return render(request, 'home.html', {"playlists" : playlists})
 
 def artists(request):
     return render(request, 'artists.html', {})
@@ -74,3 +83,5 @@ def register(request):
         form = UserCreationForm()
 
     return render(request, 'registration/register.html', {'form': form})
+
+
