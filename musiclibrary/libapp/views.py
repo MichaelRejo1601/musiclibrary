@@ -49,14 +49,14 @@ def search_albums(request):
     if 'search' in request.GET:
         search_query = request.GET['search']
         # Use contains so as long as search contains some correct letters we are good
-        albums = Album.objects.filter(al_name__icontains=search_query)
+        albums = Album.objects.select_related('al_aid').all().filter(al_name__icontains=search_query)
     else:
         albums = []
 
     return render(request, 'albums.html', {'albums': albums})
 
 def album_songs(request, album_id):
-    album = get_object_or_404(Album, al_alid=album_id)
+    album = Album.objects.select_related('al_aid').all().get(al_alid = album_id)
     songs = Song.objects.filter(s_alid=album)
     return render(request, 'album_songs.html', {'album': album, 'songs': songs})
     
