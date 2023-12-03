@@ -38,5 +38,8 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', views.register, name='register'),
-    path('remove/<int:playlist_id>/', views.remove, name="remove")
+    path('remove/<int:playlist_id>/', views.remove, name="remove"),
+
+    # See playlist
+    path('playlist/<int:playlist_id>/', views.playlist, name='playlist'),
 ]

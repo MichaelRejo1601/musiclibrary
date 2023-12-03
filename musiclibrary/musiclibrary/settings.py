@@ -77,14 +77,14 @@ WSGI_APPLICATION = 'musiclibrary.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'music',
-        'USER': 'postgres',
-        'PASSWORD': 'a',
-        'HOST': 'localhost',  # Set to the address where your PostgreSQL server is running
-        'PORT': '5432',      # Set to the port number where your PostgreSQL server is listening
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'musiclibrary',
+       'USER': 'matthewluo',
+       'PASSWORD': '',
+       'HOST': 'localhost',  # Set to the address where your PostgreSQL server is running
+       'PORT': '8888',      # Set to the port number where your PostgreSQL server is listening
+   }
 }
 
 

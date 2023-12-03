@@ -82,3 +82,7 @@ def remove(request, playlist_id):
     obj = Playlist.objects.get(p_pid = playlist_id)
     obj.delete()
     return redirect("/home")
+
+def playlist(request, playlist_id):
+    playlist = get_object_or_404(Playlist, p_pid=playlist_id)
+    return render(request, 'playlist.html', {'playlist': playlist})
