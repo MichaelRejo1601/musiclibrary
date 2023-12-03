@@ -1,0 +1,19 @@
+<!-- home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>Explore your music collection with ease. Search for specific songs, browse playlists, and discover new music.</p>
+
+<p><a href="playlist.html">Playlist 1</a></p>
+<button onclick="removePlaylist('Playlist 1')">Remove</button>
+
+<p><a href="playlist.html">Playlist 2</a></p>
+<button onclick="removePlaylist('Playlist 2')">Remove</button>
+
+<div class="playlist">
+    <button onclick="addPlaylist()">Add Playlist</button>
+</div>
+    
+
+{% endblock %}

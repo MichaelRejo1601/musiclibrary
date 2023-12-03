@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <title>{% block title %}Music Library{% endblock %}</title>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <h1>Music Library</h1>
+    <nav>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'artists' %}">Search Artists</a></li>
+        <li><a href="{% url 'albums' %}">Search Albums</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Navbar -->
+
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
