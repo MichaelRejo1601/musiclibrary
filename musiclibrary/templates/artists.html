@@ -3,12 +3,20 @@
 
 {% block content %}
 
-<h1>Search Artists</h1>
-
-<form>
+<form method="GET" action="{% url 'search_artists' %}">
     <label for="search">Find an Artist:</label>
     <input type="text" id="search" name="search" placeholder="Enter artist name">
     <button type="submit">Search</button>
 </form>
+
+{% if artists %}
+    <ul>
+        {% for artist in artists %}
+        <a href="{% url 'artist_albums' artist.a_aid %}">{{ artist.a_name }}</a>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No artists found. Please try searching again.</p>
+{% endif %}
 
 {% endblock %}

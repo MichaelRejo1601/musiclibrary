@@ -1,0 +1,18 @@
+<!-- artist_albums.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ artist.a_name }}'s Albums</h1>
+
+{% if albums %}
+    <ul>
+        {% for album in albums %}
+            <li>{{ album.al_name }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No albums found for {{ artist.a_name }}.</p>
+{% endif %}
+
+{% endblock %}

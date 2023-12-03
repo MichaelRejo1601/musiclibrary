@@ -1,0 +1,18 @@
+<!-- album_songs.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ album.al_name }}</h1>
+
+{% if songs %}
+    <ul>
+        {% for song in songs %}
+            <li>{{ song.s_name }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No songs found for {{ album.al_name }}.</p>
+{% endif %}
+
+{% endblock %}

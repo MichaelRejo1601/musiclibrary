@@ -3,12 +3,20 @@
 
 {% block content %}
 
-<h1>Search Albums</h1>
-
-<form>
+<form method="GET" action="{% url 'search_albums' %}">
     <label for="search">Find an Album:</label>
     <input type="text" id="search" name="search" placeholder="Enter album name">
     <button type="submit">Search</button>
 </form>
+
+{% if albums %}
+    {% for album in albums %}
+    <ul>
+        <a href="{% url 'album_songs' album.al_alid %}">{{ album.al_name }}</a>
+    </ul>
+    {% endfor %}
+{% else %}
+    <p>No albums found. Please try searching again</p>
+{% endif %}
 
 {% endblock %}
