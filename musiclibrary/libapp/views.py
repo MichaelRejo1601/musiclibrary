@@ -50,8 +50,11 @@ def artist_albums(request, artist_id):
 def search_albums(request):
     if 'search' in request.GET:
         search_query = request.GET['search']
+        condition_A = Q(al_name__icontains=search_query)
+        condition_B = Q(al_aid__a_name__icontains=search_query)
+        combined_condition = condition_A  | condition_B
         # Use contains so as long as search contains some correct letters we are good
-        albums = Album.objects.select_related('al_aid').all().filter(al_name__icontains=search_query)
+        albums = Album.objects.select_related('al_aid').all().filter(combined_condition)
     else:
         albums = []
 
@@ -95,7 +98,8 @@ def playlist(request, playlist_id):
         # Use contains so as long as search contains some correct letters we are good
         condition_A = Q(s_name__icontains=search_query)
         condition_B = Q(s_alid__al_aid__a_name__icontains=search_query)
-        combined_condition = condition_A  | condition_B
+        condition_C = Q(s_alid__al_name__icontains=search_query)
+        combined_condition = condition_A  | condition_B | condition_C
         song_ids_in_playlist = [playsong.ps_sid.s_sid for playsong in playsongs]
         songs = Song.objects.select_related('s_alid__al_aid').all().filter(combined_condition).exclude(s_sid__in=song_ids_in_playlist)
         
