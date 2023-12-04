@@ -71,3 +71,13 @@ nav a {
     height: 100vh;
     width: 100vw;
 }
+
+.song-item {
+    display: flex; 
+    align-items: center; 
+    margin-top: 10px;
+}
+
+.song-item a {
+    margin-right: 10px;
+}
