@@ -82,6 +82,17 @@ nav a {
     margin-right: 10px;
 }
 
+.playsong-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.playsong-item a {
+    margin-right: 10px;
+}
+
 .centered-content {
     display: flex;
     flex-direction: column;
