@@ -42,5 +42,6 @@ urlpatterns = [
 
     # See playlist
     path('playlist/<int:playlist_id>/', views.playlist, name='playlist'),
-    path('playlist/<int:playlist_id>/add_song/<int:song_id>/query/<str:search_query>/', views.add_song, name="add_song")
+    path('playlist/<int:playlist_id>/add_song/<int:song_id>/query/<str:search_query>/', views.add_song, name="add_song"),
+    path('playlist/<int:playlist_id>/remove_song/<int:song_id>/query/<str:search_query>/', views.remove_song, name="remove_song")
 ]

@@ -85,7 +85,8 @@ def register(request):
 
 def remove(request, playlist_id):
     obj = Playlist.objects.get(p_pid = playlist_id)
-    obj.delete()
+    if obj:
+        obj.delete()
     return redirect("/home")
 
 def playlist(request, playlist_id):
@@ -104,11 +105,17 @@ def playlist(request, playlist_id):
         songs = Song.objects.select_related('s_alid__al_aid').all().filter(combined_condition).exclude(s_sid__in=song_ids_in_playlist)
         
     else:
-        search_query=""
+        search_query=" "
         songs = []
     return render(request, 'playlist.html', {'playlist': playlist, 'playsongs':playsongs, 'songs':songs, 'search_query':search_query})
 
 def add_song(request, playlist_id, song_id, search_query):
     obj = Playsong(playlist_id, song_id)
     obj.save()
+    return redirect("/playlist/{0}/?search={1}".format(playlist_id, search_query))
+
+def remove_song(request, playlist_id, song_id, search_query):
+    obj = Playsong.objects.filter(ps_pid=playlist_id, ps_sid=song_id).first()
+    if obj:
+        obj.delete()
     return redirect("/playlist/{0}/?search={1}".format(playlist_id, search_query))

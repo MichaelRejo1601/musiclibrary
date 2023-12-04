@@ -15,7 +15,7 @@
     <div class="playlist-item">
         <a href="{% url 'playlist' playlist.p_pid %}">{{ playlist.p_name }}</a>
         <form action="{% url 'remove' playlist.p_pid %}">
-            <button type="submit" onclick="">X</button>
+            <button type="submit" onclick="">x</button>
         </form>
     </div>
 {% endfor %}

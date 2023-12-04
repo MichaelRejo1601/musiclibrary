@@ -7,13 +7,18 @@
   <div>
     <h1>{{ playlist.p_name }}</h1>
     {% for playsong in playsongs %}
-      <li> {{ playsong.ps_sid.s_name }} - {{ playsong.ps_sid.s_alid.al_aid.a_name }} 
+    <div class="song-item">
+      <a> {{ playsong.ps_sid.s_name }} - {{ playsong.ps_sid.s_alid.al_aid.a_name }} 
         {% if playsong.ps_sid.s_explicit %}
-        <div style="background-color: #D3D3D3; padding: 2px; display: inline-block; font-size: smaller;">
-          E
-        </div> 
+          <div style="background-color: #D3D3D3; padding: 2px; display: inline-block; font-size: smaller;">
+            E
+          </div> 
         {% endif %}
-      </li>
+      </a>
+      <form method="GET" action="{% url 'remove_song' playlist.p_pid playsong.ps_sid.s_sid search_query %}">
+        <button type="submit">x</button>
+      </form>
+    </div>
     {% endfor %}
   </div>
   <div>
