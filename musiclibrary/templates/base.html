@@ -14,9 +14,16 @@
     <h1>Music Library</h1>
     <nav>
       <ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'home' %}">Playlists</a></li>
         <li><a href="{% url 'search_artists' %}">Search Artists</a></li>
         <li><a href="{% url 'search_albums' %}">Search Albums</a></li>
+        <li><b>|</b></li>
+        {% if user.is_authenticated %}
+            <li>Hello, {{ user.get_username }}.</li>
+            <li><a href="{% url 'logout' %}">Logout</a></li> 
+        {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>
