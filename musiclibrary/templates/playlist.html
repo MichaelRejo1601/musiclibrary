@@ -20,7 +20,10 @@
     {% if songs %}
       <ul>
         {% for song in songs %}
-          <li>{{ song.s_name }} - {{ song.s_alid.al_aid.a_name }}</li>
+          <li>{{ song.s_name }} - {{ song.s_alid.al_aid.a_name }}</li> 
+          <form method="GET" action="{% url 'add_song' playlist.p_pid song.s_sid search_query %}">
+            <button type="submit">+</button>
+          </form>
         {% endfor %}
       </ul>
     {% else %}

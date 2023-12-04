@@ -80,6 +80,9 @@ DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
        'NAME': 'musiclibrary',
+       'USER': 'postgres',
+       'PASSWORD': 'a',
+       'NAME': 'musiclibrary',
        'USER': 'matthewluo',
        'PASSWORD': '',
        'HOST': 'localhost',  # Set to the address where your PostgreSQL server is running
