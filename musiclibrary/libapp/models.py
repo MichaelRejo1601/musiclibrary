@@ -168,6 +168,7 @@ class Playlist(models.Model):
 
 
 class Playsong(models.Model):
+    
     ps_pid = models.OneToOneField(Playlist, models.DO_NOTHING, db_column='ps_pid', primary_key=True)
     ps_sid = models.ForeignKey('Song', models.DO_NOTHING, db_column='ps_sid')
 
