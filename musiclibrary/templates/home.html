@@ -5,18 +5,19 @@
 
 <p>Explore your music collection with ease. Search for specific songs, browse playlists, and discover new music.</p>
 
-{% for playlist in playlists %}
-<p><a href="{% url 'playlist' playlist.p_pid %}">{{ playlist.p_name }}</a></p>
-<form action="{% url 'remove' playlist.p_pid %}">
-    <button type="submit" onclick="">Remove</button>
-</form>
-{% endfor %}
-
-
 <form action="{% url 'home' %}" method="post">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
     <input type="submit" value="Add Playlist">
 </form>
+
+{% for playlist in playlists %}
+    <div class="playlist-item">
+        <a href="{% url 'playlist' playlist.p_pid %}">{{ playlist.p_name }}</a>
+        <form action="{% url 'remove' playlist.p_pid %}">
+            <button type="submit" onclick="">X</button>
+        </form>
+    </div>
+{% endfor %}
 
 {% endblock %}

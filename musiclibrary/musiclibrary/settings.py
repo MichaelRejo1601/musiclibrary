@@ -82,8 +82,11 @@ DATABASES = {
        'NAME': 'musiclibrary',
        'USER': 'postgres',
        'PASSWORD': 'a',
+       'NAME': 'musiclibrary',
+       'USER': 'matthewluo',
+       'PASSWORD': '',
        'HOST': 'localhost',  # Set to the address where your PostgreSQL server is running
-       'PORT': '5432',      # Set to the port number where your PostgreSQL server is listening
+       'PORT': '8888',      # Set to the port number where your PostgreSQL server is listening
    }
 }
 

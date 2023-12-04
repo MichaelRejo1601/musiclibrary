@@ -3,15 +3,13 @@
 
 {% block content %}
 
-<div class="grid-container">
-  {{ playlist.p_name }}
-  {% for playsong in playsongs %}
-  <li> {{ playsong.ps_sid.s_name }} - {{ playsong.ps_sid.s_alid.al_aid.a_name }} </li>
-  {% endfor %}
+<div class="grid">
   <div>
-    playlist songs here
+    <h1>{{ playlist.p_name }}</h1>
+    {% for playsong in playsongs %}
+      <li> {{ playsong.ps_sid.s_name }} - {{ playsong.ps_sid.s_alid.al_aid.a_name }} </li>
+    {% endfor %}
   </div>
-
   <div>
     <form method="GET" action="{% url 'playlist' playlist.p_pid %}">
       <label for="search">Find an Song:</label>
