@@ -52,3 +52,22 @@ nav a {
 .content li {
     margin-bottom: 10px;
 }
+
+.playlist-item {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.playlist-item > * {
+    display: inline-block;
+    margin-right: 10px; 
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    width: 100vw;
+}
