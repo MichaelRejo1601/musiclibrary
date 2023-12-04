@@ -7,6 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 from django.contrib.auth.models import User
+from viewflow.fields import CompositeKey
 
 class Album(models.Model):
     al_alid = models.IntegerField(primary_key=True)
@@ -168,10 +169,10 @@ class Playlist(models.Model):
 
 
 class Playsong(models.Model):
-    
-    ps_pid = models.OneToOneField(Playlist, models.DO_NOTHING, db_column='ps_pid', primary_key=True)
+    id = CompositeKey(columns=['ps_pid', 'ps_sid'])
+    ps_pid = models.ForeignKey('Playlist', models.DO_NOTHING, db_column='ps_pid')
     ps_sid = models.ForeignKey('Song', models.DO_NOTHING, db_column='ps_sid')
-
+    
     class Meta:
         managed = False
         db_table = 'playsong'
@@ -185,7 +186,7 @@ class Song(models.Model):
     s_explicit = models.BooleanField(blank=True, null=True)
     s_danceability = models.FloatField(blank=True, null=True)
     s_alid = models.ForeignKey(Album, models.DO_NOTHING, db_column='s_alid', blank=True, null=True)
-
+    
     class Meta:
         managed = False
         db_table = 'song'

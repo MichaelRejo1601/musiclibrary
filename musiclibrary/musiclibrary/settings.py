@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'musiclibrary.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'music',
+       'NAME': 'musiclibrary',
        'USER': 'postgres',
        'PASSWORD': 'a',
        'HOST': 'localhost',  # Set to the address where your PostgreSQL server is running
