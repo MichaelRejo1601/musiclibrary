@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
+
 from .forms import *
 
 from .models import *
@@ -85,14 +87,18 @@ def remove(request, playlist_id):
 
 def playlist(request, playlist_id):
     playlist = get_object_or_404(Playlist, p_pid=playlist_id)
-    return render(request, 'playlist.html', {'playlist': playlist})
-
-def search_songs(request):
+    playlist_instance = Playlist.objects.get(p_pid=playlist_id)
+    playsongs = Playsong.objects.select_related('ps_sid__s_alid__al_aid').filter(ps_pid=playlist_instance)
+    
     if 'search' in request.GET:
         search_query = request.GET['search']
         # Use contains so as long as search contains some correct letters we are good
-        songs = Song.objects.filter(s_name__icontains=search_query)
+        condition_A = Q(s_name__icontains=search_query)
+        condition_B = Q(s_alid__al_aid__a_name__icontains=search_query)
+        combined_condition = condition_A  | condition_B
+        song_ids_in_playlist = [playsong.ps_sid.s_sid for playsong in playsongs]
+        songs = Song.objects.select_related('s_alid__al_aid').all().filter(combined_condition).exclude(s_sid__in=song_ids_in_playlist)
+        
     else:
         songs = []
-
-    return render(request, 'playlist.html', {'songs': songs})
+    return render(request, 'playlist.html', {'playlist': playlist, 'playsongs':playsongs, 'songs':songs})

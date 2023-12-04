@@ -4,12 +4,16 @@
 {% block content %}
 
 <div class="grid-container">
+  {{ playlist.p_name }}
+  {% for playsong in playsongs %}
+  <li> {{ playsong.ps_sid.s_name }} - {{ playsong.ps_sid.s_alid.al_aid.a_name }} </li>
+  {% endfor %}
   <div>
     playlist songs here
   </div>
 
   <div>
-    <form method="GET" action="{% url 'search_songs' %}">
+    <form method="GET" action="{% url 'playlist' playlist.p_pid %}">
       <label for="search">Find an Song:</label>
       <input type="text" id="search" name="search" placeholder="Enter song name">
       <button type="submit">Search</button>
@@ -18,7 +22,7 @@
     {% if songs %}
       <ul>
         {% for song in songs %}
-          <li>{{ song.s_name }}</li>
+          <li>{{ song.s_name }} - {{ song.s_alid.al_aid.a_name }}</li>
         {% endfor %}
       </ul>
     {% else %}
