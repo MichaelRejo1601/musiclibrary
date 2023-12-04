@@ -81,3 +81,11 @@ nav a {
 .song-item a {
     margin-right: 10px;
 }
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+}

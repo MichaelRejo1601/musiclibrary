@@ -2,25 +2,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>Login</title>
-    <!-- Add your CSS styles or link to external stylesheets here -->
 </head>
-<body>
-
-<div>
-    <h2>Login</h2>
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        
-        {{ form.as_p }}
-        
-        <button type="submit">Login</button>
-    </form>
-    <br>
-    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
-</div>
-
+<body class="centered-content">
+    <div>
+        <h2>Login</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            
+            <button type="submit">Login</button>
+        </form>
+        <br>
+        <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    </div>
 </body>
 </html>
