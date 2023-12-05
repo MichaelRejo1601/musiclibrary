@@ -101,6 +101,7 @@ def remove(request, playlist_id):
 @login_required
 @csrf_exempt
 def playlist(request, playlist_id):
+    danceability_status = False
     playlist = get_object_or_404(Playlist, p_pid=playlist_id)
     playlist_instance = Playlist.objects.get(p_pid=playlist_id)
     playsongs = Playsong.objects.select_related('ps_sid__s_alid__al_aid').filter(ps_pid=playlist_instance)
@@ -118,7 +119,17 @@ def playlist(request, playlist_id):
     else:
         search_query=" "
         songs = []
-    return render(request, 'playlist.html', {'playlist': playlist, 'playsongs':playsongs, 'songs':songs, 'search_query':search_query})
+        
+    if 'danceabilityStatus' in request.GET:
+        danceabilityStatus = request.GET['danceabilityStatus']
+        danceability_status = danceabilityStatus.lower() == 'true'
+    
+    print(danceability_status)
+    if danceability_status:
+        playsongs = playsongs.filter(ps_sid__s_danceability__gt=0.5)
+        print("filtered")
+        
+    return render(request, 'playlist.html', {'playlist': playlist, 'playsongs':playsongs, 'songs':songs, 'search_query':search_query, 'danceability_status':danceability_status})
 
 @login_required
 @csrf_exempt

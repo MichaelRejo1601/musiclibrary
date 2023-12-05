@@ -1,12 +1,50 @@
 <!-- playlists.html -->
 {% extends 'base.html' %}
 
+{% load custom_filters %}
+
 {% block content %}
 
 <div class="grid">
   <div>
-    <h1>{{ playlist.p_name }}</h1>
-    {% for playsong in playsongs %}
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <h1>{{ playlist.p_name }}&ensp;</h1>
+      <h1> | &ensp;</h1>
+      <label class="switch">
+          <input type="checkbox" id="danceabilityCheckbox" name="danceabilityCheckbox" {% if danceability_status %} checked {% endif %}>
+          <span class="slider round"></span>
+      </label>
+      <script>
+        // Get the checkbox element
+        var danceabilityCheckbox = document.getElementById("danceabilityCheckbox");
+      
+        // Add an event listener to the checkbox
+        danceabilityCheckbox.addEventListener("change", function() {
+          // Get the current status of the checkbox
+          var danceabilityStatus = danceabilityCheckbox.checked;
+      
+          // Get the current URL
+          var currentUrl = window.location.href;
+      
+          // Create a regular expression to match the danceabilityStatus parameter in the URL
+          var regex = /([?&])danceabilityStatus=([^&#]*)/;
+      
+          // Check if the danceabilityStatus parameter already exists in the URL
+          if (regex.test(currentUrl)) {
+            // If it exists, update the existing parameter
+            var updatedUrl = currentUrl.replace(regex, danceabilityStatus ? "$1danceabilityStatus=true" : "$1danceabilityStatus=false");
+          } else {
+            // If it doesn't exist, append the parameter to the URL
+            var separator = currentUrl.includes("?") ? "&" : "?";
+            var updatedUrl = currentUrl + separator + "danceabilityStatus=" + danceabilityStatus;
+          }
+      
+          // Redirect to the updated URL
+          window.location.href = updatedUrl;
+        });
+      </script>
+  </div>
+    {% for playsong in playsongs|filter_by_danceability:request %}
     <div class="playsong-item">
       <a> {{ playsong.ps_sid.s_name }} - {{ playsong.ps_sid.s_alid.al_aid.a_name }} 
         {% if playsong.ps_sid.s_explicit %}
