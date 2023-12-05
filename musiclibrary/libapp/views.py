@@ -23,7 +23,7 @@ def home(request):
         if name is not None:
             newobj = Playlist(p_name=name, p_uid = Users.objects.get(u_username=request.user.username))
             newobj.save()
-    playlists = Playlist.objects.all()
+    playlists = Playlist.objects.select_related('p_uid').all().filter(p_uid__u_username = request.user.username)
     return render(request, 'home.html', {"playlists" : playlists})
 
 @login_required
