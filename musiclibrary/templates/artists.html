@@ -10,11 +10,13 @@
 </form>
 
 {% if artists %}
-    <ul>
+    
         {% for artist in artists %}
+        <ul>
         <a href="{% url 'artist_albums' artist.a_aid %}">{{ artist.a_name }}</a>
+        </ul>
         {% endfor %}
-    </ul>
+    
 {% else %}
     <p>No artists found. Please try searching again.</p>
 {% endif %}
